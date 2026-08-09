@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EcoQuest</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="hero">
+    <nav class="navbar">
+      <h1 class="logo">EcoQuest 🌱</h1>
+      <p class="tagline">Gamified sustainability for students</p>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Dashboard -->
+    <section class="dashboard">
+      <div class="stat-card">
+        <div class="icon">🌱</div>
+        <div>
+          <p class="label">Eco Points</p>
+          <p class="value" id="points">0</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="icon">🔥</div>
+        <div>
+          <p class="label">Streak</p>
+          <p class="value" id="streak">0</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="icon">✅</div>
+        <div>
+          <p class="label">Actions</p>
+          <p class="value" id="actions">0</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="icon">🏆</div>
+        <div>
+          <p class="label">Level</p>
+          <p class="value" id="level">Eco Beginner</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Progress Bar -->
+    <section class="progress-card">
+      <h2>Level Progress</h2>
+      <p id="progress-text">0 / 50 points</p>
+      <div class="progress-bar">
+        <div id="progress-fill"></div>
+      </div>
+    </section>
+
+    <!-- Feedback -->
+    <section id="feedback" class="feedback hidden"></section>
+
+    <!-- Actions -->
+    <section class="actions">
+      <h2>Log an Action</h2>
+      <div class="action-card">
+        <div class="icon">♻️</div>
+        <div class="info">
+          <h3>Recycled waste</h3>
+          <p>Help reduce landfill waste.</p>
+        </div>
+        <button onclick="logAction('Recycled waste',10)">+10</button>
+      </div>
+      <div class="action-card">
+        <div class="icon">💧</div>
+        <div class="info">
+          <h3>Reusable bottle</h3>
+          <p>Skip single-use bottles.</p>
+        </div>
+        <button onclick="logAction('Reusable bottle',8)">+8</button>
+      </div>
+      <div class="action-card">
+        <div class="icon">💡</div>
+        <div class="info">
+          <h3>Saved electricity</h3>
+          <p>Turn off unused devices.</p>
+        </div>
+        <button onclick="logAction('Saved electricity',12)">+12</button>
+      </div>
+      <div class="action-card">
+        <div class="icon">🚶‍♀️</div>
+        <div class="info">
+          <h3>Walked or cycled</h3>
+          <p>Choose eco-friendly travel.</p>
+        </div>
+        <button onclick="logAction('Walked or cycled',15)">+15</button>
+      </div>
+      <div class="action-card">
+        <div class="icon">🛑</div>
+        <div class="info">
+          <h3>Avoided plastic</h3>
+          <p>Reduce single-use plastic.</p>
+        </div>
+        <button onclick="logAction('Avoided plastic',10)">+10</button>
+      </div>
+    </section>
+
+    <!-- Challenge -->
+    <section class="challenge-card">
+      <div class="icon">🎯</div>
+      <div class="info">
+        <h2>Today's Challenge</h2>
+        <p id="challenge-text">Avoid single-use plastic today!</p>
+        <p class="reward">Reward: +20 points</p>
+      </div>
+      <button id="challenge-btn" onclick="completeChallenge()">Complete</button>
+    </section>
+
+    <!-- Achievements -->
+    <section class="achievements">
+      <h2>Achievements</h2>
+      <div class="badge-grid">
+        <div class="badge locked" id="badge-first">🌱<span>First Step</span></div>
+        <div class="badge locked" id="badge-recycle">♻️<span>Recycling Rookie</span></div>
+        <div class="badge locked" id="badge-water">💧<span>5 Water Saving Action</span></div>
+        <div class="badge locked" id="badge-energy">⚡<span>Energy Hero</span></div>
+        <div class="badge locked" id="badge-travel">🚲<span>Green Traveler</span></div>
+        <div class="badge locked" id="badge-champion">🌍<span>Green Champion</span></div>
+      </div>
+    </section>
+
+    <!-- Weekly Leaderboard -->
+<section class="leaderboard">
+  <h2>Weekly Leaderboard</h2>
+  <div class="leaderboard-cards">
+    <button class="leader-card" onclick="viewRank()">
+      <div class="icon">🏅</div>
+      <h3>Rank</h3>
+      <p>Your current rank among peers</p>
+      <span class="details">View Details →</span>
+    </button>
+
+    <button class="leader-card" onclick="viewStudent()">
+      <div class="icon">👤</div>
+      <h3>Student</h3>
+      <p>See student information</p>
+      <span class="details">View Details →</span>
+    </button>
+
+    <button class="leader-card" onclick="viewPoints()">
+      <div class="icon">⭐</div>
+      <h3>Points</h3>
+      <p>Check your points progress</p>
+      <span class="details">View Details →</span>
+    </button>
+  </div>
+</section>
+
+
+    <!-- My Impact -->
+    <section class="impact-card">
+      <h2>My Impact</h2>
+      <p>🛑 Plastic avoided: <span id="plastic">0</span></p>
+      <p>💧 Bottles reused: <span id="bottles">0</span></p>
+      <p>💡 Electricity saved: <span id="electricity">0</span></p>
+      <p>🚶 Walks/Cycles: <span id="walks">0</span></p>
+    </section>
+
+    <!-- Eco Coach -->
+    <section class="coach-card">
+      <div class="icon">🤖</div>
+      <div>
+        <h2>Eco Coach</h2>
+        <p id="coach-suggestion">Start your journey with an easy eco action today!</p>
+      </div>
+      <h3>Recent Actions</h3>
+      <ul id="recent-actions"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>EcoQuest © 2026</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
